@@ -11,3 +11,7 @@ I created a list of five spells and used a loop to cast each one. I learned that
 ## Phase 3
 
 I added file writing to record every spell attempt in spell_log.txt. I used try-with-resources to automatically close the file after writing, even if an error occurs. This is easier and safer than manually closing the file in a finally block.
+
+## Phase 4
+
+I added a readLog method to read and display spell history from a text file. I also handled missing files using FileNotFoundException. Java requires handling this checked exception because the file might not exist.

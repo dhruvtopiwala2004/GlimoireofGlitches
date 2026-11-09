@@ -1,7 +1,23 @@
+import java.io.File;
 import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
+
+    public static void readLog(String fileName) {
+        try (Scanner reader = new Scanner(new File(fileName))) {
+
+            while (reader.hasNextLine()) {
+                System.out.println(reader.nextLine());
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + fileName);
+        }
+    }
+
     public static void main(String[] args) {
 
         SpellCaster caster = new SpellCaster();
@@ -38,5 +54,11 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Error writing to spell log: " + e.getMessage());
         }
+
+        System.out.println("\n--- Spell Casting History ---");
+        readLog("spell_log.txt");
+
+        System.out.println("\n--- Testing Missing File ---");
+        readLog("missing_grimoire.txt");
     }
 }
