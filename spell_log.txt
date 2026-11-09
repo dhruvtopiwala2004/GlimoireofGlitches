@@ -1,0 +1,5 @@
+Fireball - ManaLeakException
+Ice Storm - Success
+Lightning Bolt - Success
+Healing Light - FizzleException
+Shadow Blast - FizzleException

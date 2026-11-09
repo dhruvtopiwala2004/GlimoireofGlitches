@@ -15,3 +15,7 @@ I added file writing to record every spell attempt in spell_log.txt. I used try-
 ## Phase 4
 
 I added a readLog method to read and display spell history from a text file. I also handled missing files using FileNotFoundException. Java requires handling this checked exception because the file might not exist.
+
+## Phase 5
+
+I tested the program and verified that all spells were attempted and logged. I learned that an empty spell list causes no casting attempts, while a missing file is handled without crashing. Reviewing the code helped me understand exception handling and file handling better.
