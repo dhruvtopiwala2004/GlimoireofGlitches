@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -11,19 +14,29 @@ public class Main {
                 "Shadow Blast"
         };
 
-        for (String spell : spells) {
-            try {
-                caster.castSpell(spell);
+        try (FileWriter writer = new FileWriter("spell_log.txt", true)) {
 
-            } catch (ManaLeakException e) {
-                System.out.println("Mana Leak Warning: " + e.getMessage());
+            for (String spell : spells) {
+                try {
+                    caster.castSpell(spell);
+                    writer.write(spell + " - Success\n");
 
-            } catch (FizzleException e) {
-                System.out.println("Fizzle Warning: " + e.getMessage());
+                } catch (ManaLeakException e) {
+                    System.out.println("Mana Leak Warning: " + e.getMessage());
+                    writer.write(spell + " - ManaLeakException\n");
 
-            } catch (SpellException e) {
-                System.out.println("General Spell Error: " + e.getMessage());
+                } catch (FizzleException e) {
+                    System.out.println("Fizzle Warning: " + e.getMessage());
+                    writer.write(spell + " - FizzleException\n");
+
+                } catch (SpellException e) {
+                    System.out.println("General Spell Error: " + e.getMessage());
+                    writer.write(spell + " - SpellException\n");
+                }
             }
+
+        } catch (IOException e) {
+            System.out.println("Error writing to spell log: " + e.getMessage());
         }
     }
 }
