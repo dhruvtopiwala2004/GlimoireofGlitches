@@ -3,10 +3,27 @@ public class Main {
 
         SpellCaster caster = new SpellCaster();
 
-        try {
-            caster.castSpell("Fireball");
-        } catch (SpellException e) {
-            System.out.println("Spell failed: " + e.getMessage());
+        String[] spells = {
+                "Fireball",
+                "Ice Storm",
+                "Lightning Bolt",
+                "Healing Light",
+                "Shadow Blast"
+        };
+
+        for (String spell : spells) {
+            try {
+                caster.castSpell(spell);
+
+            } catch (ManaLeakException e) {
+                System.out.println("Mana Leak Warning: " + e.getMessage());
+
+            } catch (FizzleException e) {
+                System.out.println("Fizzle Warning: " + e.getMessage());
+
+            } catch (SpellException e) {
+                System.out.println("General Spell Error: " + e.getMessage());
+            }
         }
     }
 }
